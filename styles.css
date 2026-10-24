@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: darkgray;
+    font-family: "Iceland";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container {
+    width: 80%;
+    height: fit-content;
+    border: 2px greenyellow solid;
+    text-align: center;
+    background-color: grey;
+    border-radius: 15px;
+}
+
+/* text: slot machine */
+.title h2 {
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* text: enter your deposit amount */
+.deposit-amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* input deposit container */
+#deposit-amount {
+    padding: 15px;
+    width: 90px;
+    margin-left: 20px;
+    border: 2px solid greenyellow;
+    border-radius: 15px;
+}
+
+/* text: enter the amount per line */
+.amount-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* input amount per line */
+#amount-per-line {
+    padding: 15px;
+    width: 90px;
+    margin-left: 20px;
+    border: 2px solid greenyellow;
+    border-radius: 15px;
+}
+
+/* the spin button */
+#spin {
+    padding: 10px 20px;
+    border: 2px solid greenyellow;
+    font-family: inherit;
+    border-radius: 15px;
+    font-size: 25px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#spin:hover {
+    background-color: greenyellow;
+    border: 2px black solid;
+
+}
+
+/* return div */
+#return {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    color: greenyellow;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* text you won */
+.amount-won {
+    font-size: 45px;
+
+}
+
+/* text: amount won */
+#amount-won {
+    color: greenyellow;
+    margin: 10px;
+}
+
+/* text: your current balance is */
+.current-balance {
+    font-size: 45px;
+}
+
+/* actual balance */
+#current-balance {
+    color: greenyellow;
+    margin: 10px;
+}
+
+/* div play again */
+.play-again {
+    font-size: 25px;
+}
+
+/* yes button */
+#play-again, #no-play {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 2px solid greenyellow;
+    font-family: inherit;
+    border-radius: 15px;
+    font-size: 25px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#play-again:hover, #no-play:hover {
+    background-color: greenyellow;
+    border: 2px black solid;
+}
+
