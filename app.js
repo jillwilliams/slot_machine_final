@@ -19,7 +19,7 @@ let currentBalance = 0;
 let hasDeposited = false;
 
 const spinWheel = () => {
-    const answers = ["A", "B", "C", "D", "A", "B", "B", "C", "D", "D"];
+    const answers = ["🍎", "🍒", "🍋", "🍇", "🍎", "🍒", "🍋", "🍇"];
     const getRandomAnswer = () => answers[Math.floor(Math.random() * answers.length)];
 
     returnSymbolsEl.innerText = getRandomAnswer();
@@ -33,11 +33,11 @@ const spinWheel = () => {
     };
 
 const winnings = () => {
-    const depositVal = parseFloat(depositAmountEl.value) || 0;
-    if (!hasDeposited && depositVal > 0) {
-        currentBalance = depositVal;
+    const depositValue = parseFloat(depositAmountEl.value) || 0;
+    if (!hasDeposited && depositValue > 0) {
+        currentBalance = depositValue;
         hasDeposited = true;
-    }
+    } 
 
     const lineAmount = parseFloat(amountPerLineEl.value) || 0;
 
@@ -70,20 +70,36 @@ const winnings = () => {
 const playAgain = () => {
     if (currentBalance <= 0) {
         alert("Game Over! Please deposit more money");
-        return;
+        if (amountPerLineEl.tagName === "INPUT" & depositAmountEl.tagName === "INPUT") {
+            amountPerLineEl.value = "";
+            depositAmountEl.value = "";
+            amountWonEl.innerText = "";
+            currentBalanceEl.innerText = "";
+            returnSymbolsEl.innerText = "";
+            returnSymbolsTwoEl.innerText = "";
+            returnSymbolsThreeEl.innerText = "";
+            returnSymbolsFourEl.innerText = "";
+            returnSymbolsFiveEl.innerText = "";
+            returnSymbolsSixEl.innerText = "";
+            currentBalanceEl.innerText = "";
+        } 
+        winnings();
     }
 
-    if (depositAmountEl.tagName === "INPUT") {
+    if (depositAmountEl.tagName === "INPUT" && currentBalance >= 0) {
         depositAmountEl.value = currentBalance.toFixed(2);
     } else {
         depositAmountEl.innerText = `$${currentBalance.toFixed(2)}`;
+        
     }
 
     amountWonEl.innerText = "$0.00";
+    currentBalanceEl.innerText = ""
 
     if (amountPerLineEl.tagName === "INPUT") {
         amountPerLineEl.value = "";
     }
+    winnings();
 };
 
 const dontPlayAgain = () => {

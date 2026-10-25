@@ -12,7 +12,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .container {
@@ -81,7 +80,6 @@ body {
 #spin:hover {
     background-color: greenyellow;
     border: 2px black solid;
-
 }
 
 /* return div */
@@ -98,7 +96,6 @@ body {
 /* text you won */
 .amount-won {
     font-size: 45px;
-
 }
 
 /* text: amount won */
@@ -142,3 +139,25 @@ body {
     border: 2px black solid;
 }
 
+@media (max-width: 768px) {
+    /* text: enter your deposit amount */
+    .deposit-amount {
+        font-size: 20px;
+    }
+    /* text: enter the amount per line */
+    .amount-line {
+        font-size: 20px;
+    }
+    /* text you won */
+    .amount-won {
+        font-size: 30px;
+    }
+    /* return div */
+    #return {
+        font-size: 45px;
+    }
+    /* text: your current balance is */
+    .current-balance {
+        font-size: 30px;
+    }
+}
