@@ -120,17 +120,15 @@ const newBetGame = () => {
     
     const newDepositAmount = parseFloat(newDepositAmountEl.value) || 0;
 
-    // 2. Perform numeric addition first, then format with .toFixed(2)
     const updatedBalance = newDepositAmount + Number(currentBalance);
-    currentBalance = updatedBalance; // Update your underlying balance variable
+    currentBalance = updatedBalance; 
 
-    // 3. Update the innerHTML safely
     currentBalanceEl.innerHTML = `$${updatedBalance.toFixed(2)}`;
 
     if (depositAmountEl.tagName === 'INPUT' && updatedBalance >= 0) {
         depositAmountEl.value = updatedBalance.toFixed(2);
     } else {
-        // Parse current innerText cleanly to a number before subtracting
+        
         const currentDepositNumber = Number(depositAmountEl.innerText.replace('$', '')) || 0;
         depositAmountEl.innerText = `$${(currentDepositNumber - updatedBalance).toFixed(2)}`;
     }
