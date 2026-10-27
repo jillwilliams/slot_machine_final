@@ -1,5 +1,4 @@
 const depositAmountEl = document.getElementById("deposit-amount");
-const lineBetEl = document.getElementById("lines-bet");
 const amountPerLineEl = document.getElementById("amount-per-line");
 const spinButtonEl = document.getElementById("spin");
 
@@ -14,6 +13,10 @@ const amountWonEl = document.getElementById("amount-won");
 const currentBalanceEl = document.getElementById("current-balance");
 const playAgainButtonEl = document.getElementById("play-again");
 const noPlayAgainButtonEl = document.getElementById("no-play");
+const newDepositAmountEl = document.getElementById("new-deposit-amount")
+const newDepositButtonEl = document.getElementById("new-deposit")
+
+
 
 let currentBalance = 0;
 let hasDeposited = false;
@@ -31,6 +34,7 @@ const spinWheel = () => {
 
     winnings();
     };
+
 
 const winnings = () => {
     const depositValue = parseFloat(depositAmountEl.value) || 0;
@@ -67,43 +71,81 @@ const winnings = () => {
     currentBalanceEl.innerText = `$${currentBalance.toFixed(2)}`;
     };
 
+
 const playAgain = () => {
     if (currentBalance <= 0) {
         alert("Game Over! Please deposit more money");
-        if (amountPerLineEl.tagName === "INPUT" & depositAmountEl.tagName === "INPUT") {
-            amountPerLineEl.value = "";
-            depositAmountEl.value = "";
-            amountWonEl.innerText = "";
-            currentBalanceEl.innerText = "";
-            returnSymbolsEl.innerText = "";
-            returnSymbolsTwoEl.innerText = "";
-            returnSymbolsThreeEl.innerText = "";
-            returnSymbolsFourEl.innerText = "";
-            returnSymbolsFiveEl.innerText = "";
-            returnSymbolsSixEl.innerText = "";
-            currentBalanceEl.innerText = "";
-        } 
-        winnings();
+    
+    if (amountPerLineEl.tagName === 'INPUT' && depositAmountEl.tagName === 'INPUT') {
+        amountPerLineEl.value = "$0";
+        amountWonEl.innerText = "";
+        returnSymbolsEl.innerText = "";
+        returnSymbolsTwoEl.innerText = "";
+        returnSymbolsThreeEl.innerText = "";
+        returnSymbolsFourEl.innerText = "";
+        returnSymbolsFiveEl.innerText = "";
+        returnSymbolsSixEl.innerText = "";
+        const newDeposit = parseFloat(newDepositAmountEl.value) || 0
+        depositAmountEl.value = `${currentBalance.toFixed(2) + newDeposit}`;
+        currentBalanceEl.innerText = `$${currentBalance.toFixed(2) + newDeposit}`;
     }
-
-    if (depositAmountEl.tagName === "INPUT" && currentBalance >= 0) {
-        depositAmountEl.value = currentBalance.toFixed(2);
     } else {
-        depositAmountEl.innerText = `$${currentBalance.toFixed(2)}`;
-        
+        if (depositAmountEl.tagName === 'INPUT' && currentBalance >= 0) {
+        depositAmountEl.value = currentBalance.toFixed(2);
+        } else {
+        depositAmountEl.innerText = `$${(Number(depositAmountEl.innerText.replace('$', '')) - currentBalance).toFixed(2)}`;
+        }
     }
-
-    amountWonEl.innerText = "$0.00";
-    currentBalanceEl.innerText = ""
-
-    if (amountPerLineEl.tagName === "INPUT") {
+    if (amountPerLineEl.tagName === 'INPUT') {
         amountPerLineEl.value = "";
     }
     winnings();
+    
 };
 
+const depositMoney = () => {
+    const newDepositAmount = parseFloat(newDepositAmountEl.value) || 0;
+    
+    if (depositAmountEl.tagName === 'INPUT' && newDepositAmount >= 0) {
+        
+        depositAmountEl.value = `${(newDepositAmount) - (-1 * currentBalance.toFixed(2))}`;
+
+    }
+    newBetGame();
+};
+    
+
+
+const newBetGame = () => {
+    
+    const newDepositAmount = parseFloat(newDepositAmountEl.value) || 0;
+
+    // 2. Perform numeric addition first, then format with .toFixed(2)
+    const updatedBalance = newDepositAmount + Number(currentBalance);
+    currentBalance = updatedBalance; // Update your underlying balance variable
+
+    // 3. Update the innerHTML safely
+    currentBalanceEl.innerHTML = `$${updatedBalance.toFixed(2)}`;
+
+    if (depositAmountEl.tagName === 'INPUT' && updatedBalance >= 0) {
+        depositAmountEl.value = updatedBalance.toFixed(2);
+    } else {
+        // Parse current innerText cleanly to a number before subtracting
+        const currentDepositNumber = Number(depositAmountEl.innerText.replace('$', '')) || 0;
+        depositAmountEl.innerText = `$${(currentDepositNumber - updatedBalance).toFixed(2)}`;
+    }
+
+    if (amountPerLineEl.tagName === 'INPUT') {
+        amountPerLineEl.value = "";
+    }
+
+
+    winnings();
+};
+
+
 const dontPlayAgain = () => {
-    if (amountPerLineEl.tagName === "INPUT" & depositAmountEl.tagName === "INPUT") {
+    if (amountPerLineEl.tagName === 'INPUT' & depositAmountEl.tagName === 'INPUT') {
         amountPerLineEl.value = "";
         depositAmountEl.value = "";
         amountWonEl.innerText = "";
@@ -114,6 +156,7 @@ const dontPlayAgain = () => {
         returnSymbolsFourEl.innerText = "";
         returnSymbolsFiveEl.innerText = "";
         returnSymbolsSixEl.innerText = "";
+        newDepositAmountEl.value = "";
     } 
     alert ("Have a nice day!")
 }
@@ -121,3 +164,4 @@ const dontPlayAgain = () => {
 spinButtonEl.addEventListener("click", spinWheel);
 playAgainButtonEl.addEventListener("click", playAgain);
 noPlayAgainButtonEl.addEventListener("click", dontPlayAgain);
+newDepositButtonEl.addEventListener("click", depositMoney);

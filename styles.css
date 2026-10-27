@@ -139,6 +139,52 @@ body {
     border: 2px black solid;
 }
 
+/* new deposit amount */
+.new-deposit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/*  */
+.new-deposit h1 { 
+    font-size: 25px;
+}
+
+/*  */
+.new-deposit-amount {
+    padding: 15px;
+    width: 90px;
+    height: 50px;
+    margin-left: 20px;
+    border: 2px solid greenyellow;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#new-deposit {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: 2px solid greenyellow;
+    font-family: inherit;
+    border-radius: 15px;
+    font-size: 25px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#new-deposit:hover {
+    background-color: greenyellow;
+    border: 2px black solid;
+}
+
+
+
 @media (max-width: 768px) {
     /* text: enter your deposit amount */
     .deposit-amount {
