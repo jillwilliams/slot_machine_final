@@ -92,8 +92,15 @@ const playAgain = () => {
     } else {
         if (depositAmountEl.tagName === 'INPUT' && currentBalance >= 0) {
         depositAmountEl.value = currentBalance.toFixed(2);
+        returnSymbolsEl.innerText = "";
+        returnSymbolsTwoEl.innerText = "";
+        returnSymbolsThreeEl.innerText = "";
+        returnSymbolsFourEl.innerText = "";
+        returnSymbolsFiveEl.innerText = "";
+        returnSymbolsSixEl.innerText = "";
         } else {
         depositAmountEl.innerText = `$${(Number(depositAmountEl.innerText.replace('$', '')) - currentBalance).toFixed(2)}`;
+        
         }
     }
     if (amountPerLineEl.tagName === 'INPUT') {
@@ -135,6 +142,7 @@ const newBetGame = () => {
 
     if (amountPerLineEl.tagName === 'INPUT') {
         amountPerLineEl.value = "";
+        newDepositAmountEl.value = "";
     }
 
 
